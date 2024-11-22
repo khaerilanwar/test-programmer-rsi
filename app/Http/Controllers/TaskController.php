@@ -42,7 +42,11 @@ class TaskController extends Controller
         ]);
 
         // Menambahkan data ke database
-        Task::create($validateData);
+        try {
+            Task::create($validateData);
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Data gagal ditambahkan');
+        }
 
         return redirect('/todo')->with('success', 'Data berhasil ditambahkan');
     }
@@ -85,7 +89,11 @@ class TaskController extends Controller
         ]);
 
         // Mengupdate data ke database
-        $task->update($validateData);
+        try {
+            $task->update($validateData);
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Data gagal diupdate');
+        }
 
         return redirect('/todo')->with('success', 'Data berhasil diupdate');
     }
@@ -96,7 +104,11 @@ class TaskController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $task = Task::findOrfail($id);
-        $task->delete();
+        try {
+            $task->delete();
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Data gagal dihapus');
+        }
 
         return redirect('/todo')->with('success', 'Data berhasil dihapus');
     }

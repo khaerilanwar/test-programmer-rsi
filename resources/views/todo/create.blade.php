@@ -1,6 +1,10 @@
 @extends('main')
 
-@dump($errors->all())
+{{-- @dump($errors->all()) --}}
+
+@php
+    use Carbon\Carbon;
+@endphp
 
 @section('content')
     <div class="row">
@@ -42,8 +46,9 @@
                         class="form-control @error('jam')
                         'border-danger'
                     @enderror"
-                        id="jam" placeholder="jam" value="{{ old('jam') }}">
-                    @error('tanggal')
+                        id="jam" placeholder="jam"
+                        value="{{ old('jam') ? Carbon::parse(old('jam'))->format('H:i') : '' }}">
+                    @error('jam')
                         <div class="text-danger">
                             {{ $message }}
                         </div>

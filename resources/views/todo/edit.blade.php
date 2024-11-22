@@ -1,6 +1,6 @@
 @extends('main')
 
-@dump($errors->all())
+{{-- @dump($errors->all()) --}}
 
 @php
     use Carbon\Carbon;

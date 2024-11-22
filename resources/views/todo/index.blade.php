@@ -1,5 +1,9 @@
 @extends('main')
 
+@php
+    use Carbon\Carbon;
+@endphp
+
 @section('content')
     <div class="row">
         <h1 class="text-center mb-4">Data Tugas</h1>
@@ -22,7 +26,7 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $task->todo }}</td>
                             <td>{{ $task->tanggal }}</td>
-                            <td>{{ $task->jam }}</td>
+                            <td>{{ Carbon::parse($task->jam)->format('H:i') }}</td>
                             <td>
                                 @if ($task->status == 'belum')
                                     <span class="badge rounded-pill text-bg-danger">{{ $task->status }}</span>

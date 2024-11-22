@@ -9,25 +9,18 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-    </script>
 </head>
 
 <body>
 
     @session('success')
         <div class="alert alert-success w-50 mx-auto" role="alert">
+            {{ $value }}
+        </div>
+    @endsession
+
+    @session('error')
+        <div class="alert alert-danger w-50 mx-auto" role="alert">
             {{ $value }}
         </div>
     @endsession
